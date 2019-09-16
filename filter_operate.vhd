@@ -20,12 +20,12 @@ use std.textio.all;
 
 entity read_image_vhdl is
        port(
-            --clock:in std_logic;                                                                   
-            --data:in std_logic_vector((data_width-1) downto 0);                                                              
-            --read_addr:in std_logic_vector((addr_width-1) downto 0);                                                                
-            --write_addr:in std_logic_vector((addr_width-1) downto 0);                                                              
-            --we:in std_logic;                                                               
-            --re:in std_logic;  
+            clock:in std_logic;                                                                   
+            data:in std_logic_vector((data_width-1) downto 0);                                                              
+            read_addr:in std_logic_vector((addr_width-1) downto 0);                                                                
+            write_addr:in std_logic_vector((addr_width-1) downto 0);                                                              
+            we:in std_logic;                                                               
+            re:in std_logic;  
             outp: out output_arr
             );
      
@@ -54,18 +54,18 @@ architecture Behavioral of read_image_vhdl is
             wait;
         end process;
        
-        ---signal read_address_reg :std_logic_vector((addr_width) downto 0) := (others =>'0');
-        --begin
-        --process(clock)
-        --begin
-            --if(rising_edge(clock)) then
-                --if(we='1') then
-                       --ram_block(to_integer(unsigned(write_addr))) <= data;
-                --end if;
-                --if(re='1') then 
-                        --outp<=ram_block(to_integer(unsigned(read_addr)));
-                --end if;
-            --end if;                    
-        --end process;               
+        signal read_address_reg :std_logic_vector((addr_width) downto 0) := (others =>'0');
+        begin
+        process(clock)
+        begin
+            if(rising_edge(clock)) then
+                if(we='1') then
+                       ram_block(to_integer(unsigned(write_addr))) <= data;
+                end if;
+                if(re='1') then 
+                        outp<=ram_block(to_integer(unsigned(read_addr)));
+                end if;
+            end if;                    
+        end process;               
 end Behavioral;
 
