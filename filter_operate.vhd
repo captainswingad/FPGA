@@ -41,12 +41,7 @@ architecture Behavioral of read_image_vhdl is
             variable temp : bit_vector((data_width-1) downto 0);
             variable i : std_logic_vector((addr_width-1) downto 0);
             begin
-            
-       
-
-            
-
-            for i in outp'range loop
+                for i in outp'range loop
                 readline(my_file,my_line);
                 read(my_line,temp);
                 outp(i) <= to_stdlogicvector(temp);
